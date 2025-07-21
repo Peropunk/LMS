@@ -101,11 +101,6 @@ export default function Home() {
                 >
                   Start Learning! 📚
                 </button>
-
-                <div className="text-sm text-gray-500 flex items-center gap-2">
-                  <span className="w-2 h-2 bg-green-400 rounded-full animate-ping"></span>
-                  Students & Teachers Online
-                </div>
               </div>
 
               {/* Admin Access */}
@@ -120,7 +115,6 @@ export default function Home() {
                   <span className="text-sm">Administrator Access</span>
                   <div className="w-2 h-2 bg-red-400 rounded-full animate-pulse"></div>
                 </button>
-                <p className="text-xs text-gray-500 text-center mt-2">Database Management & Analytics</p>
               </div>
             </div>
 
