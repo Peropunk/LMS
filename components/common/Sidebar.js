@@ -59,7 +59,7 @@ const roleColors = {
   }
 };
 
-export default function Sidebar({ role = "student" }) {
+export default function Sidebar({ role = "student", onCloseSidebar }) {
   const router = useRouter();
   const links = linksByRole[role] || [];
   const colors = roleColors[role];
@@ -75,20 +75,36 @@ export default function Sidebar({ role = "student" }) {
     return role.charAt(0).toUpperCase() + role.slice(1) + " Portal";
   };
 
+  const handleLinkClick = () => {
+    // Close sidebar on mobile when a link is clicked
+    if (onCloseSidebar) {
+      onCloseSidebar();
+    }
+  };
+
   return (
     <aside className={`w-72 min-h-screen ${colors.bg} ${colors.border} border-r`}>
       {/* Header */}
       <div className="p-6 border-b border-gray-200/50">
-        <div className="flex items-center gap-3">
-          <div className={`w-10 h-10 ${colors.active} rounded-lg flex items-center justify-center`}>
-            <span className="text-xl">
-              {role === 'student' ? '🎓' : role === 'teacher' ? '👩‍🏫' : '🔐'}
-            </span>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className={`w-10 h-10 ${colors.active} rounded-lg flex items-center justify-center`}>
+              <span className="text-xl">
+                {role === 'student' ? '🎓' : role === 'teacher' ? '👩‍🏫' : '🔐'}
+              </span>
+            </div>
+            <div>
+              <h2 className={`font-bold text-lg ${colors.text}`}>AI LMS</h2>
+              <p className="text-sm text-gray-600">{getRoleTitle()}</p>
+            </div>
           </div>
-          <div>
-            <h2 className={`font-bold text-lg ${colors.text}`}>AI LMS</h2>
-            <p className="text-sm text-gray-600">{getRoleTitle()}</p>
-          </div>
+          {/* Close button for mobile */}
+          <button
+            onClick={onCloseSidebar}
+            className="lg:hidden p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
+          >
+            <span className="text-xl">✕</span>
+          </button>
         </div>
       </div>
 
@@ -101,10 +117,11 @@ export default function Sidebar({ role = "student" }) {
               <li key={link.href}>
                 <Link
                   href={link.href}
+                  onClick={handleLinkClick}
                   className={`
                     flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 group
-                    ${active 
-                      ? colors.active 
+                    ${active
+                      ? colors.active
                       : `${colors.text} ${colors.hover}`
                     }
                   `}
