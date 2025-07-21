@@ -79,53 +79,77 @@ export default function Home() {
     </div>
   );
 
-  const FloatingPencil = ({ delay = 0, position = "top-32 right-20" }) => (
+  const FloatingPen = ({ delay = 0, position = "top-32 right-20" }) => (
     <div className={`absolute ${position} animate-bounce-slow hidden lg:block opacity-70`} style={{ animationDelay: `${delay}s` }}>
-      <svg width="16" height="72" viewBox="0 0 16 72" className="drop-shadow-lg">
+      <svg width="14" height="70" viewBox="0 0 14 70" className="drop-shadow-lg">
         <defs>
-          <linearGradient id={`pencilGradient${delay}`} x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#FEF3C7" />
-            <stop offset="20%" stopColor="#FCD34D" />
-            <stop offset="80%" stopColor="#F59E0B" />
-            <stop offset="100%" stopColor="#D97706" />
+          <linearGradient id={`penBodyGradient${delay}`} x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#1E40AF" />
+            <stop offset="30%" stopColor="#3B82F6" />
+            <stop offset="70%" stopColor="#2563EB" />
+            <stop offset="100%" stopColor="#1E3A8A" />
           </linearGradient>
-          <linearGradient id={`metalGradient${delay}`} x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#E5E7EB" />
-            <stop offset="50%" stopColor="#9CA3AF" />
-            <stop offset="100%" stopColor="#6B7280" />
+          <linearGradient id={`penCapGradient${delay}`} x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#374151" />
+            <stop offset="50%" stopColor="#4B5563" />
+            <stop offset="100%" stopColor="#1F2937" />
           </linearGradient>
-          <radialGradient id={`eraserGradient${delay}`} cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="#F9A8D4" />
-            <stop offset="100%" stopColor="#EC4899" />
-          </radialGradient>
+          <linearGradient id={`penClipGradient${delay}`} x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#F3F4F6" />
+            <stop offset="50%" stopColor="#E5E7EB" />
+            <stop offset="100%" stopColor="#9CA3AF" />
+          </linearGradient>
+          <linearGradient id={`penTipGradient${delay}`} x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="#6B7280" />
+            <stop offset="100%" stopColor="#374151" />
+          </linearGradient>
         </defs>
-        {/* Pencil shadow */}
-        <ellipse cx="8" cy="70" rx="6" ry="1" fill="#000000" opacity="0.1" />
-        {/* Eraser with realistic shading */}
-        <rect x="3" y="2" width="10" height="7" rx="2" fill="url(#eraserGradient${delay})" />
-        <rect x="4" y="3" width="8" height="1.5" rx="0.5" fill="#FFFFFF" opacity="0.4" />
-        {/* Metal ferrule with detailed bands */}
-        <rect x="2" y="9" width="12" height="5" fill="url(#metalGradient${delay})" />
-        <line x1="2" y1="10.5" x2="14" y2="10.5" stroke="#6B7280" strokeWidth="0.3" />
-        <line x1="2" y1="12" x2="14" y2="12" stroke="#6B7280" strokeWidth="0.3" />
-        <line x1="2" y1="13.5" x2="14" y2="13.5" stroke="#6B7280" strokeWidth="0.3" />
-        {/* Hexagonal pencil body */}
-        <polygon points="4,14 8,16 12,14 12,52 8,54 4,52" fill="url(#pencilGradient${delay})" stroke="#D97706" strokeWidth="0.2" />
-        {/* Pencil edges to show hexagonal shape */}
-        <line x1="8" y1="16" x2="8" y2="54" stroke="#F59E0B" strokeWidth="0.3" opacity="0.7" />
-        <line x1="6" y1="15" x2="6" y2="53" stroke="#FBBF24" strokeWidth="0.2" opacity="0.5" />
-        <line x1="10" y1="15" x2="10" y2="53" stroke="#D97706" strokeWidth="0.2" opacity="0.8" />
-        {/* Brand text and logo */}
-        <rect x="6" y="22" width="4" height="0.8" fill="#374151" opacity="0.8" />
-        <rect x="5" y="26" width="6" height="0.6" fill="#374151" opacity="0.6" />
-        <circle cx="8" cy="32" r="1.5" fill="#DC2626" opacity="0.7" />
-        <circle cx="8" cy="32" r="0.8" fill="#FFFFFF" opacity="0.9" />
-        {/* Wood casing */}
-        <polygon points="4,52 8,58 12,52 10,52 8,56 6,52" fill="#92400E" />
-        <polygon points="6,52 8,56 10,52 9,52 8,55 7,52" fill="#A16207" />
-        {/* Graphite core */}
-        <polygon points="7.5,58 8,62 8.5,58" fill="#1F2937" />
-        <polygon points="7.8,58 8,61 8.2,58" fill="#374151" />
+
+        {/* Pen shadow */}
+        <ellipse cx="7" cy="68" rx="5" ry="1" fill="#000000" opacity="0.1" />
+
+        {/* Pen cap */}
+        <rect x="3" y="2" width="8" height="18" rx="4" fill="url(#penCapGradient${delay})" />
+        <rect x="4" y="3" width="6" height="1" rx="0.5" fill="#FFFFFF" opacity="0.3" />
+
+        {/* Pen clip */}
+        <path d="M11 4 Q13 4 13 8 Q13 12 11 12 L11 16 Q9 16 9 14 L9 6 Q9 4 11 4" fill="url(#penClipGradient${delay})" stroke="#9CA3AF" strokeWidth="0.2" />
+        <rect x="9.5" y="6" width="1" height="8" rx="0.5" fill="#D1D5DB" />
+
+        {/* Cap bottom ring */}
+        <rect x="2" y="18" width="10" height="2" rx="1" fill="#1F2937" />
+        <rect x="2.5" y="18.5" width="9" height="1" rx="0.5" fill="#4B5563" />
+
+        {/* Pen body (main barrel) */}
+        <rect x="3.5" y="20" width="7" height="36" rx="3.5" fill="url(#penBodyGradient${delay})" />
+
+        {/* Body highlight */}
+        <rect x="4" y="21" width="2" height="34" rx="1" fill="#FFFFFF" opacity="0.2" />
+
+        {/* Brand logo area */}
+        <rect x="5" y="28" width="4" height="1" rx="0.5" fill="#FFFFFF" opacity="0.8" />
+        <rect x="4.5" y="32" width="5" height="0.8" rx="0.4" fill="#FFFFFF" opacity="0.6" />
+        <circle cx="7" cy="38" r="1.5" fill="#FFFFFF" opacity="0.3" />
+        <circle cx="7" cy="38" r="0.8" fill="#1E40AF" />
+
+        {/* Grip section */}
+        <rect x="4" y="56" width="6" height="6" rx="3" fill="#374151" />
+        <rect x="4.5" y="57" width="5" height="0.3" rx="0.15" fill="#4B5563" />
+        <rect x="4.5" y="58" width="5" height="0.3" rx="0.15" fill="#4B5563" />
+        <rect x="4.5" y="59" width="5" height="0.3" rx="0.15" fill="#4B5563" />
+        <rect x="4.5" y="60" width="5" height="0.3" rx="0.15" fill="#4B5563" />
+
+        {/* Pen tip assembly */}
+        <rect x="5" y="62" width="4" height="4" rx="2" fill="url(#penTipGradient${delay})" />
+        <rect x="5.5" y="63" width="3" height="0.5" rx="0.25" fill="#9CA3AF" />
+
+        {/* Ballpoint tip */}
+        <circle cx="7" cy="66" r="1.5" fill="#374151" />
+        <circle cx="7" cy="66" r="1" fill="#4B5563" />
+        <circle cx="7" cy="66" r="0.5" fill="#1F2937" />
+
+        {/* Ink ball */}
+        <circle cx="7" cy="66.5" r="0.3" fill="#1E40AF" opacity="0.8" />
       </svg>
     </div>
   );
