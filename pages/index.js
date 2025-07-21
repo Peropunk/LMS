@@ -92,7 +92,7 @@ export default function Home() {
         AI LMS
       </h1>
       <p className="text-lg sm:text-xl md:text-2xl text-gray-600 animate-fade-in-up px-4">
-        Where Learning Meets Adventure! 🚀
+        Smart Learning, Bright Future 🎆
       </p>
     </div>
   );
