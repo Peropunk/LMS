@@ -81,75 +81,96 @@ export default function Home() {
 
   const FloatingPen = ({ delay = 0, position = "top-32 right-20" }) => (
     <div className={`absolute ${position} animate-bounce-slow hidden lg:block opacity-70`} style={{ animationDelay: `${delay}s` }}>
-      <svg width="14" height="70" viewBox="0 0 14 70" className="drop-shadow-lg">
+      <svg width="16" height="75" viewBox="0 0 16 75" className="drop-shadow-lg">
         <defs>
-          <linearGradient id={`penBodyGradient${delay}`} x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#1E40AF" />
-            <stop offset="30%" stopColor="#3B82F6" />
-            <stop offset="70%" stopColor="#2563EB" />
-            <stop offset="100%" stopColor="#1E3A8A" />
+          <linearGradient id={`fountainPenBody${delay}`} x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#7C2D12" />
+            <stop offset="30%" stopColor="#DC2626" />
+            <stop offset="70%" stopColor="#B91C1C" />
+            <stop offset="100%" stopColor="#991B1B" />
           </linearGradient>
-          <linearGradient id={`penCapGradient${delay}`} x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stopColor="#374151" />
-            <stop offset="50%" stopColor="#4B5563" />
-            <stop offset="100%" stopColor="#1F2937" />
+          <linearGradient id={`fountainPenCap${delay}`} x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#451A03" />
+            <stop offset="50%" stopColor="#7C2D12" />
+            <stop offset="100%" stopColor="#292524" />
           </linearGradient>
-          <linearGradient id={`penClipGradient${delay}`} x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#F3F4F6" />
-            <stop offset="50%" stopColor="#E5E7EB" />
-            <stop offset="100%" stopColor="#9CA3AF" />
+          <linearGradient id={`goldAccent${delay}`} x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#FEF3C7" />
+            <stop offset="30%" stopColor="#FCD34D" />
+            <stop offset="70%" stopColor="#F59E0B" />
+            <stop offset="100%" stopColor="#D97706" />
           </linearGradient>
-          <linearGradient id={`penTipGradient${delay}`} x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#6B7280" />
+          <linearGradient id={`nibGradient${delay}`} x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="#E5E7EB" />
+            <stop offset="50%" stopColor="#9CA3AF" />
             <stop offset="100%" stopColor="#374151" />
           </linearGradient>
+          <radialGradient id={`gemGradient${delay}`} cx="50%" cy="30%" r="70%">
+            <stop offset="0%" stopColor="#DBEAFE" />
+            <stop offset="50%" stopColor="#3B82F6" />
+            <stop offset="100%" stopColor="#1E40AF" />
+          </radialGradient>
         </defs>
 
         {/* Pen shadow */}
-        <ellipse cx="7" cy="68" rx="5" ry="1" fill="#000000" opacity="0.1" />
+        <ellipse cx="8" cy="72" rx="6" ry="1.5" fill="#000000" opacity="0.15" />
 
-        {/* Pen cap */}
-        <rect x="3" y="2" width="8" height="18" rx="4" fill="url(#penCapGradient${delay})" />
-        <rect x="4" y="3" width="6" height="1" rx="0.5" fill="#FFFFFF" opacity="0.3" />
+        {/* Cap finial (decorative top) */}
+        <circle cx="8" cy="4" r="2.5" fill="url(#goldAccent${delay})" />
+        <circle cx="8" cy="4" r="1.5" fill="url(#gemGradient${delay})" />
+        <circle cx="8" cy="3.5" r="0.8" fill="#FFFFFF" opacity="0.4" />
 
-        {/* Pen clip */}
-        <path d="M11 4 Q13 4 13 8 Q13 12 11 12 L11 16 Q9 16 9 14 L9 6 Q9 4 11 4" fill="url(#penClipGradient${delay})" stroke="#9CA3AF" strokeWidth="0.2" />
-        <rect x="9.5" y="6" width="1" height="8" rx="0.5" fill="#D1D5DB" />
+        {/* Cap body */}
+        <rect x="4" y="6" width="8" height="20" rx="4" fill="url(#fountainPenCap${delay})" />
 
-        {/* Cap bottom ring */}
-        <rect x="2" y="18" width="10" height="2" rx="1" fill="#1F2937" />
-        <rect x="2.5" y="18.5" width="9" height="1" rx="0.5" fill="#4B5563" />
+        {/* Ornate clip design */}
+        <path d="M12 8 Q15 8 15 12 Q15 16 12 16 L12 20 Q10 20 10 18 L10 10 Q10 8 12 8" fill="url(#goldAccent${delay})" stroke="#D97706" strokeWidth="0.3" />
+        <rect x="10.5" y="10" width="1" height="8" rx="0.5" fill="#FCD34D" />
+        <circle cx="13" cy="12" r="0.8" fill="url(#gemGradient${delay})" />
+        <circle cx="13" cy="12" r="0.4" fill="#FFFFFF" opacity="0.6" />
 
-        {/* Pen body (main barrel) */}
-        <rect x="3.5" y="20" width="7" height="36" rx="3.5" fill="url(#penBodyGradient${delay})" />
+        {/* Decorative cap bands */}
+        <rect x="3" y="22" width="10" height="1.5" rx="0.75" fill="url(#goldAccent${delay})" />
+        <rect x="3" y="24" width="10" height="1" rx="0.5" fill="#D97706" />
+        <rect x="3" y="25.5" width="10" height="1.5" rx="0.75" fill="url(#goldAccent${delay})" />
 
-        {/* Body highlight */}
-        <rect x="4" y="21" width="2" height="34" rx="1" fill="#FFFFFF" opacity="0.2" />
+        {/* Pen barrel */}
+        <rect x="4.5" y="27" width="7" height="32" rx="3.5" fill="url(#fountainPenBody${delay})" />
 
-        {/* Brand logo area */}
-        <rect x="5" y="28" width="4" height="1" rx="0.5" fill="#FFFFFF" opacity="0.8" />
-        <rect x="4.5" y="32" width="5" height="0.8" rx="0.4" fill="#FFFFFF" opacity="0.6" />
-        <circle cx="7" cy="38" r="1.5" fill="#FFFFFF" opacity="0.3" />
-        <circle cx="7" cy="38" r="0.8" fill="#1E40AF" />
+        {/* Barrel highlight */}
+        <rect x="5" y="28" width="2" height="30" rx="1" fill="#FFFFFF" opacity="0.15" />
 
-        {/* Grip section */}
-        <rect x="4" y="56" width="6" height="6" rx="3" fill="#374151" />
-        <rect x="4.5" y="57" width="5" height="0.3" rx="0.15" fill="#4B5563" />
-        <rect x="4.5" y="58" width="5" height="0.3" rx="0.15" fill="#4B5563" />
-        <rect x="4.5" y="59" width="5" height="0.3" rx="0.15" fill="#4B5563" />
-        <rect x="4.5" y="60" width="5" height="0.3" rx="0.15" fill="#4B5563" />
+        {/* Decorative barrel elements */}
+        <rect x="5.5" y="35" width="5" height="0.8" rx="0.4" fill="url(#goldAccent${delay})" />
+        <rect x="6" y="38" width="4" height="0.6" rx="0.3" fill="#FCD34D" opacity="0.8" />
 
-        {/* Pen tip assembly */}
-        <rect x="5" y="62" width="4" height="4" rx="2" fill="url(#penTipGradient${delay})" />
-        <rect x="5.5" y="63" width="3" height="0.5" rx="0.25" fill="#9CA3AF" />
+        {/* Brand emblem */}
+        <circle cx="8" cy="45" r="2" fill="url(#goldAccent${delay})" />
+        <circle cx="8" cy="45" r="1.3" fill="#DC2626" />
+        <path d="M7 44 L8 42 L9 44 L8 46 Z" fill="#FCD34D" />
 
-        {/* Ballpoint tip */}
-        <circle cx="7" cy="66" r="1.5" fill="#374151" />
-        <circle cx="7" cy="66" r="1" fill="#4B5563" />
-        <circle cx="7" cy="66" r="0.5" fill="#1F2937" />
+        {/* Grip section with texture */}
+        <rect x="5" y="59" width="6" height="8" rx="3" fill="#451A03" />
+        <rect x="5.5" y="60" width="5" height="0.4" rx="0.2" fill="#7C2D12" />
+        <rect x="5.5" y="61" width="5" height="0.4" rx="0.2" fill="#7C2D12" />
+        <rect x="5.5" y="62" width="5" height="0.4" rx="0.2" fill="#7C2D12" />
+        <rect x="5.5" y="63" width="5" height="0.4" rx="0.2" fill="#7C2D12" />
+        <rect x="5.5" y="64" width="5" height="0.4" rx="0.2" fill="#7C2D12" />
+        <rect x="5.5" y="65" width="5" height="0.4" rx="0.2" fill="#7C2D12" />
 
-        {/* Ink ball */}
-        <circle cx="7" cy="66.5" r="0.3" fill="#1E40AF" opacity="0.8" />
+        {/* Fountain pen section */}
+        <rect x="6" y="67" width="4" height="3" rx="2" fill="url(#goldAccent${delay})" />
+
+        {/* Fountain pen nib */}
+        <polygon points="6.5,70 8,73 9.5,70" fill="url(#nibGradient${delay})" />
+        <polygon points="7,70 8,72.5 9,70" fill="#E5E7EB" />
+        <line x1="8" y1="70" x2="8" y2="72.5" stroke="#374151" strokeWidth="0.3" />
+
+        {/* Nib slit */}
+        <line x1="8" y1="70.5" x2="8" y2="72" stroke="#1F2937" strokeWidth="0.2" />
+
+        {/* Ink feed */}
+        <rect x="7.7" y="69.5" width="0.6" height="1" rx="0.3" fill="#1F2937" />
       </svg>
     </div>
   );
