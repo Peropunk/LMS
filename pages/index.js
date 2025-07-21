@@ -36,21 +36,53 @@ export default function Home() {
   };
 
   const FloatingBook = ({ delay = 0, position = "top-20 left-20" }) => (
-    <div className={`absolute ${position} animate-float hidden lg:block`} style={{ animationDelay: `${delay}s` }}>
-      <div className="w-12 h-9 lg:w-16 lg:h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-sm shadow-lg transform rotate-12 relative">
-        <div className="absolute inset-1 bg-white rounded-sm opacity-90">
-          <div className="h-full w-1 bg-blue-300 ml-1 lg:ml-2"></div>
-        </div>
-      </div>
+    <div className={`absolute ${position} animate-float hidden lg:block opacity-70`} style={{ animationDelay: `${delay}s` }}>
+      <svg width="48" height="36" viewBox="0 0 48 36" className="drop-shadow-lg">
+        <defs>
+          <linearGradient id="bookGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#3B82F6" />
+            <stop offset="100%" stopColor="#1E40AF" />
+          </linearGradient>
+        </defs>
+        {/* Book cover */}
+        <rect x="4" y="4" width="40" height="28" rx="2" fill="url(#bookGradient)" />
+        {/* Book spine */}
+        <rect x="0" y="6" width="6" height="24" rx="1" fill="#1E3A8A" />
+        {/* Pages */}
+        <rect x="8" y="8" width="32" height="20" rx="1" fill="#F8FAFC" opacity="0.9" />
+        {/* Page lines */}
+        <line x1="12" y1="12" x2="36" y2="12" stroke="#E2E8F0" strokeWidth="0.5" />
+        <line x1="12" y1="16" x2="36" y2="16" stroke="#E2E8F0" strokeWidth="0.5" />
+        <line x1="12" y1="20" x2="36" y2="20" stroke="#E2E8F0" strokeWidth="0.5" />
+        <line x1="12" y1="24" x2="36" y2="24" stroke="#E2E8F0" strokeWidth="0.5" />
+      </svg>
     </div>
   );
 
   const FloatingPencil = ({ delay = 0, position = "top-32 right-20" }) => (
-    <div className={`absolute ${position} animate-bounce-slow hidden lg:block`} style={{ animationDelay: `${delay}s` }}>
-      <div className="w-1.5 h-12 lg:w-2 lg:h-16 bg-gradient-to-t from-yellow-400 via-orange-400 to-pink-400 rounded-full relative">
-        <div className="absolute -top-1.5 lg:-top-2 left-1/2 transform -translate-x-1/2 w-2.5 h-2.5 lg:w-3 lg:h-3 bg-pink-500 rounded-full"></div>
-        <div className="absolute -bottom-0.5 lg:-bottom-1 left-1/2 transform -translate-x-1/2 w-3 h-1.5 lg:w-4 lg:h-2 bg-gray-800 rounded-b-full"></div>
-      </div>
+    <div className={`absolute ${position} animate-bounce-slow hidden lg:block opacity-70`} style={{ animationDelay: `${delay}s` }}>
+      <svg width="12" height="64" viewBox="0 0 12 64" className="drop-shadow-lg">
+        <defs>
+          <linearGradient id="pencilGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="#FCD34D" />
+            <stop offset="70%" stopColor="#F59E0B" />
+            <stop offset="100%" stopColor="#D97706" />
+          </linearGradient>
+        </defs>
+        {/* Eraser */}
+        <rect x="2" y="2" width="8" height="6" rx="1" fill="#EC4899" />
+        {/* Metal band */}
+        <rect x="1" y="8" width="10" height="3" fill="#9CA3AF" />
+        {/* Pencil body */}
+        <rect x="3" y="11" width="6" height="42" fill="url(#pencilGradient)" />
+        {/* Wood part */}
+        <polygon points="3,53 6,60 9,53" fill="#92400E" />
+        {/* Graphite tip */}
+        <polygon points="5,60 6,64 7,60" fill="#1F2937" />
+        {/* Brand text simulation */}
+        <rect x="4" y="20" width="4" height="1" fill="#374151" opacity="0.7" />
+        <rect x="4" y="25" width="4" height="1" fill="#374151" opacity="0.7" />
+      </svg>
     </div>
   );
 
@@ -118,24 +150,74 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Feature Cards */}
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6 mt-8 lg:mt-12 px-4">
-              <div className="bg-white/70 backdrop-blur-sm p-4 lg:p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
-                <div className="text-3xl lg:text-4xl mb-2 lg:mb-3">🎯</div>
-                <h3 className="font-semibold text-base lg:text-lg mb-1 lg:mb-2 text-gray-800">Interactive Learning</h3>
-                <p className="text-gray-600 text-xs lg:text-sm">Engage with dynamic content and interactive quizzes</p>
+            {/* LMS Stats Section */}
+            <div className="mt-8 lg:mt-12 px-4">
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mb-8">
+                <div className="bg-white/60 backdrop-blur-sm p-4 rounded-xl text-center border border-white/30 hover:bg-white/70 transition-all duration-300">
+                  <div className="text-2xl lg:text-3xl font-bold text-purple-600 mb-1">25+</div>
+                  <div className="text-xs lg:text-sm text-gray-600 font-medium">Courses</div>
+                </div>
+                <div className="bg-white/60 backdrop-blur-sm p-4 rounded-xl text-center border border-white/30 hover:bg-white/70 transition-all duration-300">
+                  <div className="text-2xl lg:text-3xl font-bold text-blue-600 mb-1">5K+</div>
+                  <div className="text-xs lg:text-sm text-gray-600 font-medium">Students</div>
+                </div>
+                <div className="bg-white/60 backdrop-blur-sm p-4 rounded-xl text-center border border-white/30 hover:bg-white/70 transition-all duration-300">
+                  <div className="text-2xl lg:text-3xl font-bold text-green-600 mb-1">150+</div>
+                  <div className="text-xs lg:text-sm text-gray-600 font-medium">Teachers</div>
+                </div>
+                <div className="bg-white/60 backdrop-blur-sm p-4 rounded-xl text-center border border-white/30 hover:bg-white/70 transition-all duration-300">
+                  <div className="text-2xl lg:text-3xl font-bold text-orange-600 mb-1">98%</div>
+                  <div className="text-xs lg:text-sm text-gray-600 font-medium">Success Rate</div>
+                </div>
               </div>
 
-              <div className="bg-white/70 backdrop-blur-sm p-4 lg:p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
-                <div className="text-3xl lg:text-4xl mb-2 lg:mb-3">����</div>
-                <h3 className="font-semibold text-base lg:text-lg mb-1 lg:mb-2 text-gray-800">Collaborative Space</h3>
-                <p className="text-gray-600 text-xs lg:text-sm">Connect with classmates and teachers in real-time</p>
-              </div>
+              {/* Learning Paths */}
+              <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-6 lg:p-8 border border-white/30 shadow-lg">
+                <h3 className="text-lg lg:text-xl font-bold text-gray-800 mb-4 text-center">Popular Learning Paths</h3>
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                  <div className="flex items-center gap-3 p-3 rounded-lg bg-gradient-to-r from-purple-50 to-pink-50 border border-purple-100 hover:shadow-md transition-all duration-300">
+                    <div className="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" strokeWidth="2">
+                        <path d="M9 11H7a2 2 0 000 4h2v-4zM13 11h2a2 2 0 010 4h-2v-4zM9 15h6" />
+                        <path d="M3 12a9 9 0 1118 0 9 9 0 01-18 0" />
+                      </svg>
+                    </div>
+                    <div>
+                      <div className="font-semibold text-sm text-gray-800">Computer Science</div>
+                      <div className="text-xs text-gray-600">12 Courses</div>
+                    </div>
+                  </div>
 
-              <div className="bg-white/70 backdrop-blur-sm p-4 lg:p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 sm:col-span-2 lg:col-span-1">
-                <div className="text-3xl lg:text-4xl mb-2 lg:mb-3">📊</div>
-                <h3 className="font-semibold text-base lg:text-lg mb-1 lg:mb-2 text-gray-800">Track Progress</h3>
-                <p className="text-gray-600 text-xs lg:text-sm">Monitor your learning journey and achievements</p>
+                  <div className="flex items-center gap-3 p-3 rounded-lg bg-gradient-to-r from-blue-50 to-cyan-50 border border-blue-100 hover:shadow-md transition-all duration-300">
+                    <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2563EB" strokeWidth="2">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                        <line x1="16" y1="2" x2="16" y2="6" />
+                        <line x1="8" y1="2" x2="8" y2="6" />
+                        <line x1="3" y1="10" x2="21" y2="10" />
+                      </svg>
+                    </div>
+                    <div>
+                      <div className="font-semibold text-sm text-gray-800">Mathematics</div>
+                      <div className="text-xs text-gray-600">8 Courses</div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-3 p-3 rounded-lg bg-gradient-to-r from-green-50 to-emerald-50 border border-green-100 hover:shadow-md transition-all duration-300 sm:col-span-2 lg:col-span-1">
+                    <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#059669" strokeWidth="2">
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="M8 14s1.5 2 4 2 4-2 4-2" />
+                        <line x1="9" y1="9" x2="9.01" y2="9" />
+                        <line x1="15" y1="9" x2="15.01" y2="9" />
+                      </svg>
+                    </div>
+                    <div>
+                      <div className="font-semibold text-sm text-gray-800">Arts & Design</div>
+                      <div className="text-xs text-gray-600">6 Courses</div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
