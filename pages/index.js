@@ -229,7 +229,7 @@ export default function Home() {
                     disabled={isLoading}
                     className={`w-full ${role === 'admin' ? 'bg-gradient-to-r from-slate-700 to-slate-900' : 'bg-gradient-to-r from-purple-500 to-pink-500'} text-white font-semibold py-3 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed`}
                   >
-                    {isLoading ? (role === 'admin' ? 'Accessing Admin Portal...' : 'Signing In...') : (role === 'admin' ? 'Access Admin Dashboard' : 'Sign In to EduVibe')}
+                    {isLoading ? (role === 'admin' ? 'Accessing Admin Portal...' : 'Signing In...') : (role === 'admin' ? 'Access Admin Dashboard' : 'Sign In to AI LMS')}
                   </button>
                 </form>
               )}
