@@ -37,51 +37,95 @@ export default function Home() {
 
   const FloatingBook = ({ delay = 0, position = "top-20 left-20" }) => (
     <div className={`absolute ${position} animate-float hidden lg:block opacity-70`} style={{ animationDelay: `${delay}s` }}>
-      <svg width="48" height="36" viewBox="0 0 48 36" className="drop-shadow-lg">
+      <svg width="54" height="42" viewBox="0 0 54 42" className="drop-shadow-lg">
         <defs>
-          <linearGradient id="bookGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+          <linearGradient id={`bookGradient${delay}`} x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stopColor="#3B82F6" />
+            <stop offset="50%" stopColor="#2563EB" />
             <stop offset="100%" stopColor="#1E40AF" />
           </linearGradient>
+          <linearGradient id={`spineGradient${delay}`} x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#1E3A8A" />
+            <stop offset="50%" stopColor="#1E40AF" />
+            <stop offset="100%" stopColor="#312E81" />
+          </linearGradient>
         </defs>
-        {/* Book cover */}
-        <rect x="4" y="4" width="40" height="28" rx="2" fill="url(#bookGradient)" />
-        {/* Book spine */}
-        <rect x="0" y="6" width="6" height="24" rx="1" fill="#1E3A8A" />
-        {/* Pages */}
-        <rect x="8" y="8" width="32" height="20" rx="1" fill="#F8FAFC" opacity="0.9" />
-        {/* Page lines */}
-        <line x1="12" y1="12" x2="36" y2="12" stroke="#E2E8F0" strokeWidth="0.5" />
-        <line x1="12" y1="16" x2="36" y2="16" stroke="#E2E8F0" strokeWidth="0.5" />
-        <line x1="12" y1="20" x2="36" y2="20" stroke="#E2E8F0" strokeWidth="0.5" />
-        <line x1="12" y1="24" x2="36" y2="24" stroke="#E2E8F0" strokeWidth="0.5" />
+        {/* Book shadow */}
+        <ellipse cx="27" cy="39" rx="24" ry="3" fill="#000000" opacity="0.1" />
+        {/* Book cover back */}
+        <rect x="6" y="6" width="42" height="30" rx="2" fill="url(#bookGradient${delay})" stroke="#1E40AF" strokeWidth="0.5" />
+        {/* Book spine with depth */}
+        <rect x="0" y="8" width="8" height="26" rx="1" fill="url(#spineGradient${delay})" />
+        <rect x="2" y="10" width="4" height="22" rx="0.5" fill="#1E40AF" opacity="0.7" />
+        {/* Pages with realistic depth */}
+        <rect x="10" y="9" width="36" height="24" rx="1" fill="#FFFFFF" stroke="#E5E7EB" strokeWidth="0.3" />
+        <rect x="11" y="10" width="34" height="22" rx="0.5" fill="#FEFEFE" />
+        {/* Page content - ruled lines */}
+        <line x1="14" y1="14" x2="42" y2="14" stroke="#E5E7EB" strokeWidth="0.3" />
+        <line x1="14" y1="17" x2="42" y2="17" stroke="#E5E7EB" strokeWidth="0.3" />
+        <line x1="14" y1="20" x2="42" y2="20" stroke="#E5E7EB" strokeWidth="0.3" />
+        <line x1="14" y1="23" x2="42" y2="23" stroke="#E5E7EB" strokeWidth="0.3" />
+        <line x1="14" y1="26" x2="42" y2="26" stroke="#E5E7EB" strokeWidth="0.3" />
+        <line x1="14" y1="29" x2="42" y2="29" stroke="#E5E7EB" strokeWidth="0.3" />
+        {/* Margin line */}
+        <line x1="16" y1="12" x2="16" y2="31" stroke="#FCA5A5" strokeWidth="0.4" />
+        {/* Binding holes */}
+        <circle cx="8" cy="15" r="0.8" fill="#374151" />
+        <circle cx="8" cy="21" r="0.8" fill="#374151" />
+        <circle cx="8" cy="27" r="0.8" fill="#374151" />
+        {/* Cover highlight */}
+        <rect x="8" y="8" width="16" height="2" rx="1" fill="#FFFFFF" opacity="0.3" />
       </svg>
     </div>
   );
 
   const FloatingPencil = ({ delay = 0, position = "top-32 right-20" }) => (
     <div className={`absolute ${position} animate-bounce-slow hidden lg:block opacity-70`} style={{ animationDelay: `${delay}s` }}>
-      <svg width="12" height="64" viewBox="0 0 12 64" className="drop-shadow-lg">
+      <svg width="16" height="72" viewBox="0 0 16 72" className="drop-shadow-lg">
         <defs>
-          <linearGradient id="pencilGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#FCD34D" />
-            <stop offset="70%" stopColor="#F59E0B" />
+          <linearGradient id={`pencilGradient${delay}`} x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="#FEF3C7" />
+            <stop offset="20%" stopColor="#FCD34D" />
+            <stop offset="80%" stopColor="#F59E0B" />
             <stop offset="100%" stopColor="#D97706" />
           </linearGradient>
+          <linearGradient id={`metalGradient${delay}`} x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#E5E7EB" />
+            <stop offset="50%" stopColor="#9CA3AF" />
+            <stop offset="100%" stopColor="#6B7280" />
+          </linearGradient>
+          <radialGradient id={`eraserGradient${delay}`} cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stopColor="#F9A8D4" />
+            <stop offset="100%" stopColor="#EC4899" />
+          </radialGradient>
         </defs>
-        {/* Eraser */}
-        <rect x="2" y="2" width="8" height="6" rx="1" fill="#EC4899" />
-        {/* Metal band */}
-        <rect x="1" y="8" width="10" height="3" fill="#9CA3AF" />
-        {/* Pencil body */}
-        <rect x="3" y="11" width="6" height="42" fill="url(#pencilGradient)" />
-        {/* Wood part */}
-        <polygon points="3,53 6,60 9,53" fill="#92400E" />
-        {/* Graphite tip */}
-        <polygon points="5,60 6,64 7,60" fill="#1F2937" />
-        {/* Brand text simulation */}
-        <rect x="4" y="20" width="4" height="1" fill="#374151" opacity="0.7" />
-        <rect x="4" y="25" width="4" height="1" fill="#374151" opacity="0.7" />
+        {/* Pencil shadow */}
+        <ellipse cx="8" cy="70" rx="6" ry="1" fill="#000000" opacity="0.1" />
+        {/* Eraser with realistic shading */}
+        <rect x="3" y="2" width="10" height="7" rx="2" fill="url(#eraserGradient${delay})" />
+        <rect x="4" y="3" width="8" height="1.5" rx="0.5" fill="#FFFFFF" opacity="0.4" />
+        {/* Metal ferrule with detailed bands */}
+        <rect x="2" y="9" width="12" height="5" fill="url(#metalGradient${delay})" />
+        <line x1="2" y1="10.5" x2="14" y2="10.5" stroke="#6B7280" strokeWidth="0.3" />
+        <line x1="2" y1="12" x2="14" y2="12" stroke="#6B7280" strokeWidth="0.3" />
+        <line x1="2" y1="13.5" x2="14" y2="13.5" stroke="#6B7280" strokeWidth="0.3" />
+        {/* Hexagonal pencil body */}
+        <polygon points="4,14 8,16 12,14 12,52 8,54 4,52" fill="url(#pencilGradient${delay})" stroke="#D97706" strokeWidth="0.2" />
+        {/* Pencil edges to show hexagonal shape */}
+        <line x1="8" y1="16" x2="8" y2="54" stroke="#F59E0B" strokeWidth="0.3" opacity="0.7" />
+        <line x1="6" y1="15" x2="6" y2="53" stroke="#FBBF24" strokeWidth="0.2" opacity="0.5" />
+        <line x1="10" y1="15" x2="10" y2="53" stroke="#D97706" strokeWidth="0.2" opacity="0.8" />
+        {/* Brand text and logo */}
+        <rect x="6" y="22" width="4" height="0.8" fill="#374151" opacity="0.8" />
+        <rect x="5" y="26" width="6" height="0.6" fill="#374151" opacity="0.6" />
+        <circle cx="8" cy="32" r="1.5" fill="#DC2626" opacity="0.7" />
+        <circle cx="8" cy="32" r="0.8" fill="#FFFFFF" opacity="0.9" />
+        {/* Wood casing */}
+        <polygon points="4,52 8,58 12,52 10,52 8,56 6,52" fill="#92400E" />
+        <polygon points="6,52 8,56 10,52 9,52 8,55 7,52" fill="#A16207" />
+        {/* Graphite core */}
+        <polygon points="7.5,58 8,62 8.5,58" fill="#1F2937" />
+        <polygon points="7.8,58 8,61 8.2,58" fill="#374151" />
       </svg>
     </div>
   );
@@ -108,15 +152,34 @@ export default function Home() {
       <FloatingPencil delay={2.5} position="top-32 left-4 lg:top-60 lg:left-40" />
 
       {/* Educational Background Elements */}
-      <div className="absolute inset-0 opacity-5 overflow-hidden">
-        {/* Math symbols */}
-        <div className="absolute top-20 left-1/4 text-6xl lg:text-8xl text-purple-600 font-bold transform rotate-12 animate-pulse">π</div>
+      <div className="absolute inset-0 opacity-4 overflow-hidden">
+        {/* Mathematics symbols */}
+        <div className="absolute top-16 left-1/4 text-5xl lg:text-7xl text-purple-600 font-bold transform rotate-12 animate-pulse">π</div>
         <div className="absolute bottom-32 right-1/4 text-4xl lg:text-6xl text-blue-600 font-bold transform -rotate-12 animate-pulse">∑</div>
-        <div className="absolute top-1/2 left-10 text-5xl lg:text-7xl text-green-600 font-bold transform rotate-45 animate-pulse">√</div>
+        <div className="absolute top-1/2 left-8 text-4xl lg:text-6xl text-green-600 font-bold transform rotate-45 animate-pulse">√</div>
+        <div className="absolute top-1/3 right-1/3 text-3xl lg:text-5xl text-indigo-600 font-bold transform -rotate-45 animate-pulse">∫</div>
+        <div className="absolute bottom-1/4 left-1/3 text-4xl lg:text-6xl text-cyan-600 font-bold transform rotate-30 animate-pulse">Δ</div>
+        <div className="absolute top-3/4 right-20 text-3xl lg:text-5xl text-teal-600 font-bold transform -rotate-15 animate-pulse">α</div>
+        <div className="absolute bottom-40 left-20 text-3xl lg:text-5xl text-emerald-600 font-bold transform rotate-60 animate-pulse">β</div>
+
+        {/* Science symbols */}
+        <div className="absolute top-40 right-16 text-4xl lg:text-6xl text-rose-600 font-bold transform rotate-20 animate-pulse">Ω</div>
+        <div className="absolute bottom-60 right-1/3 text-3xl lg:text-5xl text-amber-600 font-bold transform -rotate-30 animate-pulse">λ</div>
+        <div className="absolute top-60 left-16 text-3xl lg:text-5xl text-violet-600 font-bold transform rotate-50 animate-pulse">σ</div>
+        <div className="absolute top-80 right-40 text-4xl lg:text-6xl text-pink-600 font-bold transform -rotate-25 animate-pulse">ω</div>
+        <div className="absolute bottom-80 left-40 text-3xl lg:text-5xl text-lime-600 font-bold transform rotate-75 animate-pulse">θ</div>
+
+        {/* Additional mathematical operators */}
+        <div className="absolute top-24 right-1/4 text-3xl lg:text-5xl text-purple-500 font-bold transform rotate-35 animate-pulse">≠</div>
+        <div className="absolute bottom-24 left-1/4 text-3xl lg:text-5xl text-blue-500 font-bold transform -rotate-40 animate-pulse">≥</div>
+        <div className="absolute top-2/3 right-12 text-3xl lg:text-5xl text-green-500 font-bold transform rotate-55 animate-pulse">≤</div>
+        <div className="absolute bottom-1/3 right-8 text-3xl lg:text-5xl text-red-500 font-bold transform -rotate-20 animate-pulse">∞</div>
 
         {/* Geometric shapes */}
-        <div className="absolute top-10 right-10 w-16 h-16 lg:w-24 lg:h-24 border-4 border-pink-300 rounded-full animate-spin-slow"></div>
-        <div className="absolute bottom-20 left-10 w-12 h-12 lg:w-20 lg:h-20 border-3 border-orange-300 transform rotate-45 animate-bounce"></div>
+        <div className="absolute top-12 right-12 w-14 h-14 lg:w-20 lg:h-20 border-3 border-pink-300 rounded-full animate-spin-slow"></div>
+        <div className="absolute bottom-16 left-12 w-10 h-10 lg:w-16 lg:h-16 border-2 border-orange-300 transform rotate-45 animate-bounce"></div>
+        <div className="absolute top-1/4 left-1/2 w-12 h-12 lg:w-18 lg:h-18 border-3 border-cyan-300 transform rotate-30 animate-pulse"></div>
+        <div className="absolute bottom-1/4 right-1/2 w-8 h-16 lg:w-12 lg:h-24 border-2 border-emerald-300 transform -rotate-15 animate-bounce"></div>
       </div>
 
       <div className="relative z-10 flex items-center justify-center min-h-screen px-4 py-8 lg:p-4">
