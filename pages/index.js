@@ -131,24 +131,48 @@ export default function Home() {
                 <h3 className="font-semibold text-lg mb-2 text-gray-800">Interactive Learning</h3>
                 <p className="text-gray-600 text-sm">Engage with dynamic content and interactive quizzes</p>
               </div>
-              
+
               <div className="bg-white/70 backdrop-blur-sm p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
                 <div className="text-4xl mb-3">👥</div>
                 <h3 className="font-semibold text-lg mb-2 text-gray-800">Collaborative Space</h3>
                 <p className="text-gray-600 text-sm">Connect with classmates and teachers in real-time</p>
               </div>
-              
+
               <div className="bg-white/70 backdrop-blur-sm p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
                 <div className="text-4xl mb-3">📊</div>
                 <h3 className="font-semibold text-lg mb-2 text-gray-800">Track Progress</h3>
                 <p className="text-gray-600 text-sm">Monitor your learning journey and achievements</p>
               </div>
             </div>
+
+            {/* Admin-only Features Preview */}
+            <div className="mt-12 p-6 bg-gradient-to-r from-slate-100/50 to-slate-200/50 backdrop-blur-sm rounded-2xl border border-slate-300/30">
+              <div className="text-center mb-4">
+                <div className="inline-flex items-center gap-2 px-4 py-2 bg-slate-700 text-white rounded-full text-sm">
+                  <span>🔐</span>
+                  <span>Administrator Features</span>
+                </div>
+              </div>
+              <div className="grid md:grid-cols-3 gap-4">
+                <div className="text-center">
+                  <div className="text-2xl mb-2">📊</div>
+                  <h4 className="font-medium text-slate-700 text-sm">Analytics Dashboard</h4>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl mb-2">💾</div>
+                  <h4 className="font-medium text-slate-700 text-sm">Database Management</h4>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl mb-2">🔍</div>
+                  <h4 className="font-medium text-slate-700 text-sm">System Monitoring</h4>
+                </div>
+              </div>
+            </div>
           </div>
         ) : (
           // Login Form
           <div className="w-full max-w-md mx-auto animate-slide-in">
-            <div className="bg-white/80 backdrop-blur-lg p-8 rounded-3xl shadow-2xl border border-white/20">
+            <div className={`${role === 'admin' ? 'bg-slate-50/90 border-slate-300/50' : 'bg-white/80 border-white/20'} backdrop-blur-lg p-8 rounded-3xl shadow-2xl border transition-all duration-300`}>
               {/* Back Button */}
               <button
                 onClick={() => setShowLogin(false)}
