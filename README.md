@@ -1,36 +1,25 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# AI LMS Frontend
 
-## Getting Started
+## Roles & Logins
+- Admin: admin@ailms.com / admin123
+- Teacher: teacher@ailms.com / teach123
+- Student: student@ailms.com / stud123
 
-First, run the development server:
+## Auth Strategy
+- Using dummy login system (can be replaced by Supabase Auth)
+- Store role in localStorage (temporary)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Routing
+- Admin Login: http://admin.localhost:3000/login/admin
+- Other Login: http://localhost:3000/login
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Dashboard Pages
+Student, Teacher, and Admin dashboards are located under:
+- `/dashboard/{role}/...`
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+Each page includes `TODO` comments for backend integration.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## To-do
+- Connect to Supabase DB
+- Add real-time data fetching
+- Replace dummy login with Supabase Auth 
