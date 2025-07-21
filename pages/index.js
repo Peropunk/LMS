@@ -68,12 +68,12 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-100 via-pink-50 to-orange-100 relative overflow-hidden">
       {/* Animated Background Elements */}
-      <FloatingBook delay={0} position="top-20 left-20" />
-      <FloatingBook delay={1} position="top-40 right-32" />
-      <FloatingBook delay={2} position="bottom-32 left-32" />
-      <FloatingPencil delay={0.5} position="top-32 right-20" />
-      <FloatingPencil delay={1.5} position="bottom-20 right-20" />
-      <FloatingPencil delay={2.5} position="top-60 left-40" />
+      <FloatingBook delay={0} position="top-10 left-4 lg:top-20 lg:left-20" />
+      <FloatingBook delay={1} position="top-20 right-4 lg:top-40 lg:right-32" />
+      <FloatingBook delay={2} position="bottom-20 left-4 lg:bottom-32 lg:left-32" />
+      <FloatingPencil delay={0.5} position="top-16 right-4 lg:top-32 lg:right-20" />
+      <FloatingPencil delay={1.5} position="bottom-10 right-4 lg:bottom-20 lg:right-20" />
+      <FloatingPencil delay={2.5} position="top-32 left-4 lg:top-60 lg:left-40" />
 
       {/* Geometric Background Patterns */}
       <div className="absolute inset-0 opacity-10 overflow-hidden">
@@ -127,7 +127,7 @@ export default function Home() {
               </div>
 
               <div className="bg-white/70 backdrop-blur-sm p-4 lg:p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
-                <div className="text-3xl lg:text-4xl mb-2 lg:mb-3">👥</div>
+                <div className="text-3xl lg:text-4xl mb-2 lg:mb-3">����</div>
                 <h3 className="font-semibold text-base lg:text-lg mb-1 lg:mb-2 text-gray-800">Collaborative Space</h3>
                 <p className="text-gray-600 text-xs lg:text-sm">Connect with classmates and teachers in real-time</p>
               </div>
