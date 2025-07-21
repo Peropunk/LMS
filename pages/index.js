@@ -107,12 +107,16 @@ export default function Home() {
       <FloatingPencil delay={1.5} position="bottom-10 right-4 lg:bottom-20 lg:right-20" />
       <FloatingPencil delay={2.5} position="top-32 left-4 lg:top-60 lg:left-40" />
 
-      {/* Geometric Background Patterns */}
-      <div className="absolute inset-0 opacity-10 overflow-hidden">
-        <div className="absolute top-10 left-10 w-20 h-20 lg:w-32 lg:h-32 bg-purple-500 rounded-full animate-pulse"></div>
-        <div className="absolute top-1/3 right-10 w-16 h-16 lg:w-24 lg:h-24 bg-pink-500 transform rotate-45 animate-spin-slow"></div>
-        <div className="absolute bottom-20 left-1/4 w-12 h-12 lg:w-20 lg:h-20 bg-orange-500 rounded-full animate-bounce"></div>
-        <div className="absolute bottom-1/3 right-1/4 w-18 h-18 lg:w-28 lg:h-28 bg-blue-500 transform rotate-12 animate-pulse"></div>
+      {/* Educational Background Elements */}
+      <div className="absolute inset-0 opacity-5 overflow-hidden">
+        {/* Math symbols */}
+        <div className="absolute top-20 left-1/4 text-6xl lg:text-8xl text-purple-600 font-bold transform rotate-12 animate-pulse">π</div>
+        <div className="absolute bottom-32 right-1/4 text-4xl lg:text-6xl text-blue-600 font-bold transform -rotate-12 animate-pulse">∑</div>
+        <div className="absolute top-1/2 left-10 text-5xl lg:text-7xl text-green-600 font-bold transform rotate-45 animate-pulse">√</div>
+
+        {/* Geometric shapes */}
+        <div className="absolute top-10 right-10 w-16 h-16 lg:w-24 lg:h-24 border-4 border-pink-300 rounded-full animate-spin-slow"></div>
+        <div className="absolute bottom-20 left-10 w-12 h-12 lg:w-20 lg:h-20 border-3 border-orange-300 transform rotate-45 animate-bounce"></div>
       </div>
 
       <div className="relative z-10 flex items-center justify-center min-h-screen px-4 py-8 lg:p-4">
