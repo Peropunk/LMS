@@ -282,43 +282,45 @@ Supabase Database Schema for Attendance:
 2. Example Supabase queries to replace mock data:
 
 // Get student attendance overview
-const { data: attendanceOverview } = await supabase
-  .from('attendance_records')
-  .select('status')
-  .eq('student_id', studentId)
-  .gte('class_date', startDate)
-  .lte('class_date', endDate);
+const getAttendanceOverview = async (studentId, startDate, endDate) => {
+  const { data: attendanceOverview } = await supabase
+    .from('attendance_records')
+    .select('status')
+    .eq('student_id', studentId)
+    .gte('class_date', startDate)
+    .lte('class_date', endDate);
+  return attendanceOverview;
+};
 
 // Get monthly attendance data
-const { data: monthlyAttendance } = await supabase
-  .from('attendance_records')
-  .select('class_date, status')
-  .eq('student_id', studentId)
-  .gte('class_date', startOfYear)
-  .order('class_date', { ascending: true });
+const getMonthlyAttendance = async (studentId, startOfYear) => {
+  const { data: monthlyAttendance } = await supabase
+    .from('attendance_records')
+    .select('class_date, status')
+    .eq('student_id', studentId)
+    .gte('class_date', startOfYear)
+    .order('class_date', { ascending: true });
+  return monthlyAttendance;
+};
 
 // Get subject-wise attendance
-const { data: subjectAttendance } = await supabase
-  .from('attendance_records')
-  .select(`
-    status,
-    subjects (
-      name
-    )
-  `)
-  .eq('student_id', studentId)
-  .gte('class_date', startDate);
+const getSubjectAttendance = async (studentId, startDate) => {
+  const { data: subjectAttendance } = await supabase
+    .from('attendance_records')
+    .select('status, subjects(name)')
+    .eq('student_id', studentId)
+    .gte('class_date', startDate);
+  return subjectAttendance;
+};
 
 // Get recent attendance records
-const { data: recentRecords } = await supabase
-  .from('attendance_records')
-  .select(`
-    *,
-    subjects (
-      name
-    )
-  `)
-  .eq('student_id', studentId)
-  .order('class_date', { ascending: false })
-  .limit(10);
+const getRecentRecords = async (studentId) => {
+  const { data: recentRecords } = await supabase
+    .from('attendance_records')
+    .select('*, subjects(name)')
+    .eq('student_id', studentId)
+    .order('class_date', { ascending: false })
+    .limit(10);
+  return recentRecords;
+};
 */
