@@ -36,30 +36,30 @@ export default function Home() {
   };
 
   const FloatingBook = ({ delay = 0, position = "top-20 left-20" }) => (
-    <div className={`absolute ${position} animate-float`} style={{ animationDelay: `${delay}s` }}>
-      <div className="w-16 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-sm shadow-lg transform rotate-12 relative">
+    <div className={`absolute ${position} animate-float hidden lg:block`} style={{ animationDelay: `${delay}s` }}>
+      <div className="w-12 h-9 lg:w-16 lg:h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-sm shadow-lg transform rotate-12 relative">
         <div className="absolute inset-1 bg-white rounded-sm opacity-90">
-          <div className="h-full w-1 bg-blue-300 ml-2"></div>
+          <div className="h-full w-1 bg-blue-300 ml-1 lg:ml-2"></div>
         </div>
       </div>
     </div>
   );
 
   const FloatingPencil = ({ delay = 0, position = "top-32 right-20" }) => (
-    <div className={`absolute ${position} animate-bounce-slow`} style={{ animationDelay: `${delay}s` }}>
-      <div className="w-2 h-16 bg-gradient-to-t from-yellow-400 via-orange-400 to-pink-400 rounded-full relative">
-        <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-3 h-3 bg-pink-500 rounded-full"></div>
-        <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-4 h-2 bg-gray-800 rounded-b-full"></div>
+    <div className={`absolute ${position} animate-bounce-slow hidden lg:block`} style={{ animationDelay: `${delay}s` }}>
+      <div className="w-1.5 h-12 lg:w-2 lg:h-16 bg-gradient-to-t from-yellow-400 via-orange-400 to-pink-400 rounded-full relative">
+        <div className="absolute -top-1.5 lg:-top-2 left-1/2 transform -translate-x-1/2 w-2.5 h-2.5 lg:w-3 lg:h-3 bg-pink-500 rounded-full"></div>
+        <div className="absolute -bottom-0.5 lg:-bottom-1 left-1/2 transform -translate-x-1/2 w-3 h-1.5 lg:w-4 lg:h-2 bg-gray-800 rounded-b-full"></div>
       </div>
     </div>
   );
 
   const AnimatedTitle = () => (
-    <div className="text-center mb-8">
-      <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-purple-600 via-pink-500 to-orange-400 bg-clip-text text-transparent animate-pulse-slow mb-4">
+    <div className="text-center mb-6 lg:mb-8">
+      <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-purple-600 via-pink-500 to-orange-400 bg-clip-text text-transparent animate-pulse-slow mb-3 lg:mb-4 px-4">
         AI LMS
       </h1>
-      <p className="text-xl md:text-2xl text-gray-600 animate-fade-in-up">
+      <p className="text-lg sm:text-xl md:text-2xl text-gray-600 animate-fade-in-up px-4">
         Where Learning Meets Adventure! 🚀
       </p>
     </div>
@@ -76,73 +76,73 @@ export default function Home() {
       <FloatingPencil delay={2.5} position="top-60 left-40" />
 
       {/* Geometric Background Patterns */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-10 left-10 w-32 h-32 bg-purple-500 rounded-full animate-pulse"></div>
-        <div className="absolute top-1/3 right-10 w-24 h-24 bg-pink-500 transform rotate-45 animate-spin-slow"></div>
-        <div className="absolute bottom-20 left-1/4 w-20 h-20 bg-orange-500 rounded-full animate-bounce"></div>
-        <div className="absolute bottom-1/3 right-1/4 w-28 h-28 bg-blue-500 transform rotate-12 animate-pulse"></div>
+      <div className="absolute inset-0 opacity-10 overflow-hidden">
+        <div className="absolute top-10 left-10 w-20 h-20 lg:w-32 lg:h-32 bg-purple-500 rounded-full animate-pulse"></div>
+        <div className="absolute top-1/3 right-10 w-16 h-16 lg:w-24 lg:h-24 bg-pink-500 transform rotate-45 animate-spin-slow"></div>
+        <div className="absolute bottom-20 left-1/4 w-12 h-12 lg:w-20 lg:h-20 bg-orange-500 rounded-full animate-bounce"></div>
+        <div className="absolute bottom-1/3 right-1/4 w-18 h-18 lg:w-28 lg:h-28 bg-blue-500 transform rotate-12 animate-pulse"></div>
       </div>
 
-      <div className="relative z-10 flex items-center justify-center min-h-screen p-4">
+      <div className="relative z-10 flex items-center justify-center min-h-screen px-4 py-8 lg:p-4">
         {!showLogin ? (
           // Welcome Screen
-          <div className="text-center max-w-4xl mx-auto animate-fade-in">
+          <div className="text-center max-w-4xl mx-auto animate-fade-in w-full">
             <AnimatedTitle />
-            
-            <div className="mb-8">
-              <p className="text-lg text-gray-700 mb-6 leading-relaxed">
+
+            <div className="mb-6 lg:mb-8">
+              <p className="text-base sm:text-lg text-gray-700 mb-4 lg:mb-6 leading-relaxed px-4">
                 Welcome to your digital classroom! Ready to embark on an amazing learning journey?
               </p>
-              
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center px-4">
                 <button
                   onClick={() => setShowLogin(true)}
-                  className="px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 animate-pulse-gentle"
+                  className="w-full sm:w-auto px-6 lg:px-8 py-3 lg:py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 animate-pulse-gentle text-sm lg:text-base"
                 >
                   Start Learning! 📚
                 </button>
               </div>
 
               {/* Admin Access */}
-              <div className="mt-8 pt-6 border-t border-gray-200/50">
+              <div className="mt-6 lg:mt-8 pt-4 lg:pt-6 border-t border-gray-200/50 px-4">
                 <button
                   onClick={() => { setRole("admin"); setShowLogin(true); }}
-                  className="group flex items-center gap-3 mx-auto px-6 py-3 bg-gradient-to-r from-slate-700 to-slate-900 text-white font-medium rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300"
+                  className="group flex items-center gap-2 lg:gap-3 mx-auto px-4 lg:px-6 py-2.5 lg:py-3 bg-gradient-to-r from-slate-700 to-slate-900 text-white font-medium rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300 text-xs lg:text-sm"
                 >
-                  <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors">
-                    <span className="text-sm">🔐</span>
+                  <div className="w-6 h-6 lg:w-8 lg:h-8 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors">
+                    <span className="text-xs lg:text-sm">🔐</span>
                   </div>
-                  <span className="text-sm">Administrator Access</span>
-                  <div className="w-2 h-2 bg-red-400 rounded-full animate-pulse"></div>
+                  <span>Administrator Access</span>
+                  <div className="w-1.5 h-1.5 lg:w-2 lg:h-2 bg-red-400 rounded-full animate-pulse"></div>
                 </button>
               </div>
             </div>
 
             {/* Feature Cards */}
-            <div className="grid md:grid-cols-3 gap-6 mt-12">
-              <div className="bg-white/70 backdrop-blur-sm p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
-                <div className="text-4xl mb-3">🎯</div>
-                <h3 className="font-semibold text-lg mb-2 text-gray-800">Interactive Learning</h3>
-                <p className="text-gray-600 text-sm">Engage with dynamic content and interactive quizzes</p>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6 mt-8 lg:mt-12 px-4">
+              <div className="bg-white/70 backdrop-blur-sm p-4 lg:p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                <div className="text-3xl lg:text-4xl mb-2 lg:mb-3">🎯</div>
+                <h3 className="font-semibold text-base lg:text-lg mb-1 lg:mb-2 text-gray-800">Interactive Learning</h3>
+                <p className="text-gray-600 text-xs lg:text-sm">Engage with dynamic content and interactive quizzes</p>
               </div>
 
-              <div className="bg-white/70 backdrop-blur-sm p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
-                <div className="text-4xl mb-3">👥</div>
-                <h3 className="font-semibold text-lg mb-2 text-gray-800">Collaborative Space</h3>
-                <p className="text-gray-600 text-sm">Connect with classmates and teachers in real-time</p>
+              <div className="bg-white/70 backdrop-blur-sm p-4 lg:p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
+                <div className="text-3xl lg:text-4xl mb-2 lg:mb-3">👥</div>
+                <h3 className="font-semibold text-base lg:text-lg mb-1 lg:mb-2 text-gray-800">Collaborative Space</h3>
+                <p className="text-gray-600 text-xs lg:text-sm">Connect with classmates and teachers in real-time</p>
               </div>
 
-              <div className="bg-white/70 backdrop-blur-sm p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2">
-                <div className="text-4xl mb-3">📊</div>
-                <h3 className="font-semibold text-lg mb-2 text-gray-800">Track Progress</h3>
-                <p className="text-gray-600 text-sm">Monitor your learning journey and achievements</p>
+              <div className="bg-white/70 backdrop-blur-sm p-4 lg:p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 sm:col-span-2 lg:col-span-1">
+                <div className="text-3xl lg:text-4xl mb-2 lg:mb-3">📊</div>
+                <h3 className="font-semibold text-base lg:text-lg mb-1 lg:mb-2 text-gray-800">Track Progress</h3>
+                <p className="text-gray-600 text-xs lg:text-sm">Monitor your learning journey and achievements</p>
               </div>
             </div>
           </div>
         ) : (
           // Login Form
-          <div className="w-full max-w-md mx-auto animate-slide-in">
-            <div className={`${role === 'admin' ? 'bg-slate-50/90 border-slate-300/50' : 'bg-white/80 border-white/20'} backdrop-blur-lg p-8 rounded-3xl shadow-2xl border transition-all duration-300`}>
+          <div className="w-full max-w-md mx-auto animate-slide-in px-4">
+            <div className={`${role === 'admin' ? 'bg-slate-50/90 border-slate-300/50' : 'bg-white/80 border-white/20'} backdrop-blur-lg p-6 lg:p-8 rounded-3xl shadow-2xl border transition-all duration-300`}>
               {/* Back Button */}
               <button
                 onClick={() => setShowLogin(false)}
@@ -151,16 +151,16 @@ export default function Home() {
                 ← Back to Home
               </button>
 
-              <div className="text-center mb-6">
-                <div className={`w-16 h-16 ${role === 'admin' ? 'bg-gradient-to-br from-slate-700 to-slate-900' : 'bg-gradient-to-br from-purple-500 to-pink-500'} rounded-full mx-auto mb-4 flex items-center justify-center animate-bounce-gentle transition-all duration-300`}>
-                  <span className="text-2xl text-white">
+              <div className="text-center mb-4 lg:mb-6">
+                <div className={`w-12 h-12 lg:w-16 lg:h-16 ${role === 'admin' ? 'bg-gradient-to-br from-slate-700 to-slate-900' : 'bg-gradient-to-br from-purple-500 to-pink-500'} rounded-full mx-auto mb-3 lg:mb-4 flex items-center justify-center animate-bounce-gentle transition-all duration-300`}>
+                  <span className="text-xl lg:text-2xl text-white">
                     {role === 'admin' ? '🔐' : '🎓'}
                   </span>
                 </div>
-                <h2 className="text-2xl font-bold text-gray-800 mb-2">
+                <h2 className="text-xl lg:text-2xl font-bold text-gray-800 mb-1 lg:mb-2">
                   {role === 'admin' ? 'Admin Portal' : 'Welcome Back!'}
                 </h2>
-                <p className="text-gray-600">
+                <p className="text-gray-600 text-sm lg:text-base px-2">
                   {role === 'admin' ? 'Access system analytics and database management' : 'Sign in to continue your learning adventure'}
                 </p>
               </div>
@@ -169,13 +169,13 @@ export default function Home() {
                 // Loading Animation
                 <div className="text-center py-8">
                   <div className="relative">
-                    <div className="w-20 h-20 mx-auto mb-4">
-                      <div className="absolute inset-0 border-4 border-purple-200 rounded-full"></div>
-                      <div className="absolute inset-0 border-4 border-purple-500 rounded-full border-t-transparent animate-spin"></div>
+                    <div className="w-16 h-16 lg:w-20 lg:h-20 mx-auto mb-3 lg:mb-4">
+                      <div className="absolute inset-0 border-3 lg:border-4 border-purple-200 rounded-full"></div>
+                      <div className="absolute inset-0 border-3 lg:border-4 border-purple-500 rounded-full border-t-transparent animate-spin"></div>
                     </div>
                     <div className="animate-pulse">
-                      <div className="text-lg font-semibold text-gray-700 mb-2">Getting things ready...</div>
-                      <div className="text-sm text-gray-500">Loading your dashboard 📚</div>
+                      <div className="text-base lg:text-lg font-semibold text-gray-700 mb-1 lg:mb-2">Getting things ready...</div>
+                      <div className="text-xs lg:text-sm text-gray-500">Loading your dashboard 📚</div>
                     </div>
                   </div>
                 </div>
