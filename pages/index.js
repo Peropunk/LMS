@@ -57,7 +57,7 @@ export default function Home() {
   const AnimatedTitle = () => (
     <div className="text-center mb-8">
       <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-purple-600 via-pink-500 to-orange-400 bg-clip-text text-transparent animate-pulse-slow mb-4">
-        EduVibe
+        AI LMS
       </h1>
       <p className="text-xl md:text-2xl text-gray-600 animate-fade-in-up">
         Where Learning Meets Adventure! 🚀
@@ -142,30 +142,6 @@ export default function Home() {
                 <div className="text-4xl mb-3">📊</div>
                 <h3 className="font-semibold text-lg mb-2 text-gray-800">Track Progress</h3>
                 <p className="text-gray-600 text-sm">Monitor your learning journey and achievements</p>
-              </div>
-            </div>
-
-            {/* Admin-only Features Preview */}
-            <div className="mt-12 p-6 bg-gradient-to-r from-slate-100/50 to-slate-200/50 backdrop-blur-sm rounded-2xl border border-slate-300/30">
-              <div className="text-center mb-4">
-                <div className="inline-flex items-center gap-2 px-4 py-2 bg-slate-700 text-white rounded-full text-sm">
-                  <span>🔐</span>
-                  <span>Administrator Features</span>
-                </div>
-              </div>
-              <div className="grid md:grid-cols-3 gap-4">
-                <div className="text-center">
-                  <div className="text-2xl mb-2">📊</div>
-                  <h4 className="font-medium text-slate-700 text-sm">Analytics Dashboard</h4>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl mb-2">💾</div>
-                  <h4 className="font-medium text-slate-700 text-sm">Database Management</h4>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl mb-2">🔍</div>
-                  <h4 className="font-medium text-slate-700 text-sm">System Monitoring</h4>
-                </div>
               </div>
             </div>
           </div>
