@@ -171,9 +171,9 @@ export default function Home() {
       <FloatingBook delay={0} position="top-10 left-4 lg:top-20 lg:left-20" />
       <FloatingBook delay={1} position="top-20 right-4 lg:top-40 lg:right-32" />
       <FloatingBook delay={2} position="bottom-20 left-4 lg:bottom-32 lg:left-32" />
-      <FloatingPencil delay={0.5} position="top-16 right-4 lg:top-32 lg:right-20" />
-      <FloatingPencil delay={1.5} position="bottom-10 right-4 lg:bottom-20 lg:right-20" />
-      <FloatingPencil delay={2.5} position="top-32 left-4 lg:top-60 lg:left-40" />
+      <FloatingPen delay={0.5} position="top-16 right-4 lg:top-32 lg:right-20" />
+      <FloatingPen delay={1.5} position="bottom-10 right-4 lg:bottom-20 lg:right-20" />
+      <FloatingPen delay={2.5} position="top-32 left-4 lg:top-60 lg:left-40" />
 
       {/* Educational Background Elements */}
       <div className="absolute inset-0 opacity-4 overflow-hidden">
