@@ -15,9 +15,17 @@ export default function Home() {
     e.preventDefault();
     setIsLoading(true);
     setError("");
-    
+
     // Simulate loading for better UX
     setTimeout(() => {
+      if (role === "admin") {
+        // Redirect to admin subdomain or admin login page
+        if (typeof window !== "undefined") {
+          window.location.href = "/login/admin";
+        }
+        return;
+      }
+
       if (loginUser(role, email, password)) {
         router.push(`/dashboard/${role}`);
       } else {
@@ -93,11 +101,26 @@ export default function Home() {
                 >
                   Start Learning! 📚
                 </button>
-                
+
                 <div className="text-sm text-gray-500 flex items-center gap-2">
                   <span className="w-2 h-2 bg-green-400 rounded-full animate-ping"></span>
                   Students & Teachers Online
                 </div>
+              </div>
+
+              {/* Admin Access */}
+              <div className="mt-8 pt-6 border-t border-gray-200/50">
+                <button
+                  onClick={() => { setRole("admin"); setShowLogin(true); }}
+                  className="group flex items-center gap-3 mx-auto px-6 py-3 bg-gradient-to-r from-slate-700 to-slate-900 text-white font-medium rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition-all duration-300"
+                >
+                  <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center group-hover:bg-white/30 transition-colors">
+                    <span className="text-sm">🔐</span>
+                  </div>
+                  <span className="text-sm">Administrator Access</span>
+                  <div className="w-2 h-2 bg-red-400 rounded-full animate-pulse"></div>
+                </button>
+                <p className="text-xs text-gray-500 text-center mt-2">Database Management & Analytics</p>
               </div>
             </div>
 
@@ -135,11 +158,17 @@ export default function Home() {
               </button>
 
               <div className="text-center mb-6">
-                <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full mx-auto mb-4 flex items-center justify-center animate-bounce-gentle">
-                  <span className="text-2xl text-white">🎓</span>
+                <div className={`w-16 h-16 ${role === 'admin' ? 'bg-gradient-to-br from-slate-700 to-slate-900' : 'bg-gradient-to-br from-purple-500 to-pink-500'} rounded-full mx-auto mb-4 flex items-center justify-center animate-bounce-gentle transition-all duration-300`}>
+                  <span className="text-2xl text-white">
+                    {role === 'admin' ? '🔐' : '🎓'}
+                  </span>
                 </div>
-                <h2 className="text-2xl font-bold text-gray-800 mb-2">Welcome Back!</h2>
-                <p className="text-gray-600">Sign in to continue your learning adventure</p>
+                <h2 className="text-2xl font-bold text-gray-800 mb-2">
+                  {role === 'admin' ? 'Admin Portal' : 'Welcome Back!'}
+                </h2>
+                <p className="text-gray-600">
+                  {role === 'admin' ? 'Access system analytics and database management' : 'Sign in to continue your learning adventure'}
+                </p>
               </div>
 
               {isLoading ? (
@@ -167,6 +196,7 @@ export default function Home() {
                     >
                       <option value="student">🎓 Student</option>
                       <option value="teacher">👩‍🏫 Teacher</option>
+                      <option value="admin">🔐 Administrator</option>
                     </select>
                   </div>
 
@@ -203,9 +233,9 @@ export default function Home() {
                   <button
                     type="submit"
                     disabled={isLoading}
-                    className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold py-3 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className={`w-full ${role === 'admin' ? 'bg-gradient-to-r from-slate-700 to-slate-900' : 'bg-gradient-to-r from-purple-500 to-pink-500'} text-white font-semibold py-3 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed`}
                   >
-                    {isLoading ? "Signing In..." : "Sign In to EduVibe"}
+                    {isLoading ? (role === 'admin' ? 'Accessing Admin Portal...' : 'Signing In...') : (role === 'admin' ? 'Access Admin Dashboard' : 'Sign In to EduVibe')}
                   </button>
                 </form>
               )}
