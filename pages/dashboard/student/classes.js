@@ -431,57 +431,30 @@ Supabase Database Schema for Classes:
 
 Example Supabase queries:
 
-// Get today's classes
 const getTodayClasses = async (studentId) => {
   const today = new Date().toISOString().split('T')[0];
   const { data } = await supabase
     .from('class_sessions')
-    .select(`
-      *,
-      subjects (
-        name,
-        teachers (
-          name
-        )
-      )
-    `)
+    .select('*, subjects(name, teachers(name))')
     .eq('date', today)
     .in('subject_id', studentSubjectIds)
     .order('start_time');
   return data;
 };
 
-// Get weekly schedule
 const getWeeklySchedule = async (studentId) => {
   const { data } = await supabase
     .from('class_schedules')
-    .select(`
-      *,
-      subjects (
-        name,
-        teachers (
-          name
-        )
-      )
-    `)
+    .select('*, subjects(name, teachers(name))')
     .in('subject_id', studentSubjectIds)
     .order('day_of_week, start_time');
   return data;
 };
 
-// Get student subjects with progress
 const getStudentSubjects = async (studentId) => {
   const { data } = await supabase
     .from('student_subjects')
-    .select(`
-      *,
-      subjects (
-        *,
-        teachers (
-          name
-        )
-      )
-    `)
+    .select('*, subjects(*, teachers(name))')
     .eq('student_id', studentId);
   return data;
 };
