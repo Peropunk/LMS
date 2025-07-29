@@ -1,6 +1,8 @@
+// In your Next.js project: pages/index.js
+
 import { useState } from "react";
 import { useRouter } from "next/router";
-import { loginUser } from "../../utils/auth";
+// Remove: import { loginUser } from "../../utils/auth";
 
 export default function Login() {
   const [role, setRole] = useState("student");
@@ -9,19 +11,42 @@ export default function Login() {
   const [error, setError] = useState("");
   const router = useRouter();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (loginUser(role, email, password)) {
-      router.push(`/dashboard/${role}`);
-    } else {
-      setError("Invalid credentials");
+    setError(""); // Reset error on new submission
+
+    try {
+      const response = await fetch('http://localhost:3001/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ role, email, password }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to login');
+      }
+      
+      // On successful login, redirect to the corresponding dashboard
+      // You might want to store user data in localStorage or context
+      localStorage.setItem('user', JSON.stringify(data.user));
+      localStorage.setItem('role', data.role);
+      
+      router.push(`/dashboard/${data.role}`);
+
+    } catch (err) {
+      setError(err.message);
     }
   };
 
+  // ... keep the rest of your return JSX the same
   return (
     <div className="flex items-center justify-center min-h-screen">
       <form onSubmit={handleSubmit} className="bg-white p-8 rounded shadow-md w-80">
-        <h2 className="text-2xl font-semibold mb-4">Student/Teacher Login</h2>
+        <h2 className="text-2xl font-semibold mb-4">Login</h2>
         <select
           className="mb-4 w-full p-2 border rounded"
           value={role}

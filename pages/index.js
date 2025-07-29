@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import { loginUser } from "../utils/auth";
 
 export default function Home() {
   const [role, setRole] = useState("student");
@@ -11,29 +10,57 @@ export default function Home() {
   const [showLogin, setShowLogin] = useState(false);
   const router = useRouter();
 
+  // --- THIS IS THE NEW, CORRECTED handleSubmit FUNCTION ---
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
     setError("");
 
-    // Simulate loading for better UX
-    setTimeout(() => {
-      if (role === "admin") {
-        // Redirect to admin subdomain or admin login page
-        if (typeof window !== "undefined") {
-          window.location.href = "/login/admin";
-        }
-        return;
+    // Special case for 'admin' role, preserved from your original code.
+    if (role === "admin") {
+      // This redirects to a separate admin login page as you intended.
+      if (typeof window !== "undefined") {
+        // Using router.push for better integration with Next.js
+        router.push("/login/admin");
       }
+      return;
+    }
 
-      if (loginUser(role, email, password)) {
-        router.push(`/dashboard/${role}`);
-      } else {
-        setError("Invalid credentials");
-        setIsLoading(false);
+    // --- Logic for Student and Teacher login ---
+    try {
+      const response = await fetch('http://localhost:3001/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ role, email, password }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        // This will catch errors like 'Invalid credentials' from the server
+        throw new Error(data.error || 'An unknown error occurred.');
       }
-    }, 1500);
+      
+      // On successful login, save the user data from the backend to localStorage
+      localStorage.setItem('user', JSON.stringify(data.user));
+      localStorage.setItem('role', data.role);
+      
+      // Redirect to the appropriate dashboard
+      router.push(`/dashboard/${role}`);
+
+    } catch (err) {
+      // Set the error message to be displayed in the form
+      setError(err.message);
+    } finally {
+      // Ensure the loading state is turned off, whether login succeeds or fails
+      setIsLoading(false);
+    }
   };
+
+
+  // --- ALL YOUR UI COMPONENTS AND ANIMATIONS ARE PRESERVED BELOW ---
 
   const FloatingBook = ({ delay = 0, position = "top-20 left-20" }) => (
     <div className={`absolute ${position} animate-float hidden lg:block opacity-70`} style={{ animationDelay: `${delay}s` }}>
@@ -53,9 +80,9 @@ export default function Home() {
         {/* Book shadow */}
         <ellipse cx="27" cy="39" rx="24" ry="3" fill="#000000" opacity="0.1" />
         {/* Book cover back */}
-        <rect x="6" y="6" width="42" height="30" rx="2" fill="url(#bookGradient${delay})" stroke="#1E40AF" strokeWidth="0.5" />
+        <rect x="6" y="6" width="42" height="30" rx="2" fill={`url(#bookGradient${delay})`} stroke="#1E40AF" strokeWidth="0.5" />
         {/* Book spine with depth */}
-        <rect x="0" y="8" width="8" height="26" rx="1" fill="url(#spineGradient${delay})" />
+        <rect x="0" y="8" width="8" height="26" rx="1" fill={`url(#spineGradient${delay})`} />
         <rect x="2" y="10" width="4" height="22" rx="0.5" fill="#1E40AF" opacity="0.7" />
         {/* Pages with realistic depth */}
         <rect x="10" y="9" width="36" height="24" rx="1" fill="#FFFFFF" stroke="#E5E7EB" strokeWidth="0.3" />
@@ -104,23 +131,23 @@ export default function Home() {
         <ellipse cx="7" cy="62" rx="5" ry="1" fill="#000000" opacity="0.1" />
 
         {/* Pen cap */}
-        <rect x="3" y="2" width="8" height="18" rx="4" fill="url(#flatPenCap${delay})" stroke="#7C3AED" strokeWidth="0.5" />
+        <rect x="3" y="2" width="8" height="18" rx="4" fill={`url(#flatPenCap${delay})`} stroke="#7C3AED" strokeWidth="0.5" />
 
         {/* Simple clip */}
-        <rect x="11" y="6" width="2" height="10" rx="1" fill="url(#flatPenCap${delay})" />
+        <rect x="11" y="6" width="2" height="10" rx="1" fill={`url(#flatPenCap${delay})`} />
         <circle cx="12" cy="8" r="1" fill="#FCD34D" />
 
         {/* Cap ring */}
         <rect x="2" y="19" width="10" height="2" rx="1" fill="#7C3AED" />
 
         {/* Pen body */}
-        <rect x="3.5" y="21" width="7" height="28" rx="3.5" fill="url(#flatPenBody${delay})" stroke="#C026D3" strokeWidth="0.5" />
+        <rect x="3.5" y="21" width="7" height="28" rx="3.5" fill={`url(#flatPenBody${delay})`} stroke="#C026D3" strokeWidth="0.5" />
 
         {/* Body highlight */}
         <rect x="4" y="22" width="1.5" height="26" rx="0.75" fill="#FFFFFF" opacity="0.3" />
 
         {/* Grip section */}
-        <rect x="4" y="49" width="6" height="8" rx="3" fill="url(#flatPenGrip${delay})" stroke="#F59E0B" strokeWidth="0.5" />
+        <rect x="4" y="49" width="6" height="8" rx="3" fill={`url(#flatPenGrip${delay})`} stroke="#F59E0B" strokeWidth="0.5" />
 
         {/* Grip texture lines */}
         <rect x="4.5" y="50" width="5" height="0.5" rx="0.25" fill="#D97706" opacity="0.6" />
@@ -176,7 +203,7 @@ export default function Home() {
         <div className="absolute bottom-80 left-40 text-3xl lg:text-5xl text-lime-600 font-bold transform rotate-75 animate-pulse">θ</div>
 
         {/* Additional mathematical operators */}
-        <div className="absolute top-24 right-1/4 text-3xl lg:text-5xl text-purple-500 font-bold transform rotate-35 animate-pulse">���</div>
+        <div className="absolute top-24 right-1/4 text-3xl lg:text-5xl text-purple-500 font-bold transform rotate-35 animate-pulse">∀</div>
         <div className="absolute bottom-24 left-1/4 text-3xl lg:text-5xl text-blue-500 font-bold transform -rotate-40 animate-pulse">≥</div>
         <div className="absolute top-2/3 right-12 text-3xl lg:text-5xl text-green-500 font-bold transform rotate-55 animate-pulse">≤</div>
         <div className="absolute bottom-1/3 right-8 text-3xl lg:text-5xl text-red-500 font-bold transform -rotate-20 animate-pulse">∞</div>
